@@ -1,0 +1,8 @@
+pandas
+sqlalchemy
+jupyter
+matplotlib
+ipython
+ipykernel
+pytest
+searborn

@@ -1,1 +1,41 @@
+# Virtual environments
 .venv/
+env/
+venv/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Databases / data files
+# Do NOT commit the local SQLite warehouse or other DB files
+Data/warehouse.db
+*.sqlite3
+*.db
+
+# Jupyter / notebooks checkpoints
+.ipynb_checkpoints/
+
+# Editor / OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs and reports
+*.log
+coverage.xml
+htmlcov/
+
+# Secret or local config
+.env
+
+# Byte-compiled / distribution
+*.egg-info/
+/dist/
+/build/
+*.egg
+
