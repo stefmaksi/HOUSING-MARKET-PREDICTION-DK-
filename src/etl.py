@@ -15,7 +15,7 @@ import sys
 import pandas as pd
 
 
-def stage(csv_path, db_path, table='staging', sample=None):
+def stage(csv_path, db_path, table="staging", sample=None):
     # Checks CSV exists; prints an error and exits if not found.
     if not os.path.exists(csv_path):
         print(f"ERROR: CSV not found: {csv_path}", file=sys.stderr)
@@ -25,11 +25,11 @@ def stage(csv_path, db_path, table='staging', sample=None):
     df = pd.read_csv(csv_path, nrows=sample) if sample else pd.read_csv(csv_path)
 
     # Ensure DB directory exists
-    os.makedirs(os.path.dirname(db_path) or '.', exist_ok=True)
+    os.makedirs(os.path.dirname(db_path) or ".", exist_ok=True)
 
     # Write to SQLite
     conn = sqlite3.connect(db_path)
-    df.to_sql(table, conn, if_exists='replace', index=False)
+    df.to_sql(table, conn, if_exists="replace", index=False)
     conn.close()
 
     print(f"Staged {len(df)} rows into '{table}' in {db_path}")
@@ -37,14 +37,20 @@ def stage(csv_path, db_path, table='staging', sample=None):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--csv', default='/Users/sm/Developer/Projects/Danish Residential Housing EDA/Data/DKHousingPricesSample100k.csv')
-    parser.add_argument('--db', default='/Users/sm/Developer/Projects/Danish Residential Housing EDA/Data/warehouse.db')
-    parser.add_argument('--table', default='staging')
-    parser.add_argument('--sample', type=int, help='If set, read only first N rows')
+    parser.add_argument(
+        "--csv",
+        default="/Users/sm/Developer/Projects/Danish Residential Housing EDA/Data/DKHousingPricesSample100k.csv",
+    )
+    parser.add_argument(
+        "--db",
+        default="/Users/sm/Developer/Projects/Danish Residential Housing EDA/Data/warehouse.db",
+    )
+    parser.add_argument("--table", default="staging")
+    parser.add_argument("--sample", type=int, help="If set, read only first N rows")
     args = parser.parse_args()
 
     stage(args.csv, args.db, args.table, args.sample)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
